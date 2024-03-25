@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Seebon.Weixin.MP.Service.CommonService.Model.wp_ePaySocialInsur_Result>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-latest.pack.js"></script>
+    <title>社保列表</title>
+    <script type="text/javascript">
+        var nextpage = 1;
+        $(function () {
+            //更多按钮click事件
+            $("#next").click(function () {
+                
+                bind(nextpage);
+                nextpage += 1;
+            });
+
+        });
+
+        //AJAX方法取得数据并显示到页面上
+        function bind(nextpage)
+        {
+            $.ajax({
+                type: "get",//使用get方法访问后台
+                dataType: "json",//返回json格式的数据
+                url: "/SelfService/LastYearWelfare",//要访问的后台地址
+                data: "wp_tokenid=@ViewBag.OpenId&i="+nextpage,//要发送的数据
+                success: function (msg) {//msg为返回的数据，在这里做数据绑定
+                    var data = msg;
+                    $.each(data, function (index,item) {
+                        var row = $("#template").clone();
+                        row.find("#year").text(item.year);
+                        row.find("#month").text(item.month);
+                        row.find("#baseOld").text(item.baseOld);
+                        row.find("#compAmount").text(item.compOld + item.compBear + item.compComp + item.compJob + item.compMed);
+                        row.find("#persAmount").text(item.persOld + item.persJob + item.persMed);
+                        row.find("#morelink").attr("href", "/SelfService/WelfareDetail?wp_tokenid=@ViewBag.OpenId&year=" + item.year + "&month=" + item.month);
+                        row.attr("id", "ready");//改变绑定好数据的行的id
+                        row.appendTo("#data");//添加到模板的容器中
+                    });
+                }
+            });
+        }
+
+        
+    </script>
+</head>
+<body>
+
+    <div class="bmain">
+        <div class="head">
+            <div class="hleft">
+                <a href="#">
+                    <img src="/Content/images/syt.png" alt="仕邦人力资源有限公司" /></a><span><img src="/Content/images/logo.png" /></span>
+            </div>
+            <div class="hright">社保查询</div>
+        </div>
+
+        <div class="contxt">
+            <ul class="ulist" id="data">
+                @foreach (var item in Model)
+                {
+                    <li id="template"><a id="morelink" href="@Url.Action("WelfareDetail", new { wp_tokenid = ViewBag.OpenId, year = item.year, month = item.month })">
+                        <div class="cp1">
+                            <span class="csp1" id="year">@Html.DisplayFor(modelItem => item.year)</span>
+                            <span class="csp2" id="month">@Html.DisplayFor(modelItem => item.month)月</span>
+                        </div>
+                        <div class="cp2">
+                            <span id="baseOld">缴费基数:@Html.DisplayFor(modelItem => item.baseOld)</span>
+                            <span id="compAmount">单位缴费:@(item.compOld + item.compBear + item.compComp + item.compJob + item.compMed)</span>
+                            <span id="persAmount">个人缴费:@(item.persOld + item.persJob + item.persMed)</span>
+                        </div>
+                    </a></li>
+                }
+            </ul>
+            <div class="dmore" style="display:none;"><span id="next">更多...</span></div>
+            
+        </div>
+    </div>
+</body>
+</html>

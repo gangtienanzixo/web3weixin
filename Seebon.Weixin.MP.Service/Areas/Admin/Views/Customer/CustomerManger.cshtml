@@ -1,0 +1,62 @@
+﻿@model Seebon.Weixin .MP .Service.CommonService.Model.Customer
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>客服详情</title>
+     @Scripts.Render("~/bundles/jquery")
+     @Styles.Render("~/Content/Admin/AdminCss")
+</head>
+<body style="padding:10px;">
+@using (Html.BeginForm()){
+    @Html.ValidationSummary(true)
+    <div class="navigation">
+      <span class="back"><a href="../Index">返回客服列表</a></span><b>您当前的位置：首页 &gt; 系统管理 &gt; 客服详情</b>
+    </div>
+    <div style="padding-bottom:10px;"></div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="msgtable">
+              <tr>
+                <th colspan="2" align="left">客服详情</th>
+              </tr>
+              <tr>
+                <td width="25%" align="right">OpenId：</td>
+                <td width="75%">
+                    @Html.TextBoxFor(m=>m.custid)
+
+                    @Html.HiddenFor(m=>m.clientid)
+                    @Html.HiddenFor(m=>m.connecttime)
+                    @Html.HiddenFor(m=>m.logid)
+                </td>
+              </tr>
+              <tr>
+                <td align="right">客服名称：</td>
+                <td>
+                  @Html.TextBoxFor(m=>m.accountname)
+                </td>
+              </tr>
+
+              <tr>
+                <td align="right">状态：</td>
+                <td>
+                @Html.RadioButtonFor(m=>m.status,"1",true)在线
+                @Html.RadioButtonFor(m=>m.status,"2")离线 
+                </td>
+              </tr>
+            </table>
+                  <div style="margin-top:10px; text-align:center;">
+            <input type="submit" value="确认保存" class="submit" />
+&nbsp;&nbsp; 
+            <input type="reset" name="button" id="button" value="重 置" class="submit" />
+          </div>       
+}
+
+    @section Scripts{
+      @Scripts.Render("~/bundles/jqueryval")
+    }
+</body>
+</html>

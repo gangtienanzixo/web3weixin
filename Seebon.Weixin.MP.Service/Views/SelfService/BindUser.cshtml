@@ -1,0 +1,85 @@
+﻿@model Seebon.Weixin.MP.Service.CommonService.Model.ViewUserAccount
+
+@{
+    Layout = null;
+    Html.EnableClientValidation();
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>欢迎绑定微信到仕邦员工账户</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link  rel="stylesheet" href="/Content/css/style.css" />
+    <script src="~/Scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        function OnSuccess(response) {
+            if (response == "error") {
+                $("#MsgId").html("您输入的账号或密码不正确!");
+                $("#UserName").val("");
+                $("#Password").val("");
+            }
+            else {
+                $("#bdcon").hide();
+                location.href = "/SelfService/BindUser?wx_tokenid=" + response;
+            }
+        }
+        function OnFailure(response) {
+            alert("错误，请联系管理员");
+        }
+        function OnBegin()
+        {
+            $("#MsgId").html("<img src=\"/Content/images/loading.gif\" height=\"30px\" />正在提交....");
+        }
+
+   </script>
+</head>
+<body>
+<div class="bmain">
+  <div class="head">
+    <div class="hleft"><a href="/pages/index.html"><img src="/Content/images/syt.png" alt="仕邦人力资源有限公司" /></a><span><img src="/Content/images/logo.png" /></span></div>
+  </div>
+    @if (ViewBag.IsBind!=null&&ViewBag.IsBind)
+    {  
+  <div class="contxt" id="bdokcon">
+	<div class="ccent">
+	   <ul class="ucl">
+	     <li class="xhx">您已经与仕邦账户成功绑定</li>
+		 <li>您可以继续以下操作</li>
+		  <li><a href="/SelfService/BindUser?wx_tokenid=@ViewBag.Openid&rebind=1" class="cbtn acbtn">重新绑定</a></li>
+		  <li><a href="/SelfService/BindUser?wx_tokenid=@ViewBag.Openid&DelBind=1" class="cbtn acbtn">解除绑定</a></li>
+		 <li><a href="/pages/index.html" class="art">返回</a>仕邦微信体验更多功能</li>
+	   </ul>
+	</div>
+  </div>  
+    }
+    else
+    {
+        using (Ajax.BeginForm("BindUser", new AjaxOptions { OnSuccess = "OnSuccess", OnFailure = "OnFailure",OnBegin="OnBegin" }))
+        {
+
+        @Html.ValidationSummary(true)
+  <div class="contxt" id="bdcon">
+	    <div class="ccent">账号&nbsp;@Html.TextBoxFor(model => model.UserName, new { @class = "cinput" })</div>
+		<div class="ccent">密码&nbsp;@Html.PasswordFor(model => model.Password, new { @class = "cinput" })</div>
+        <div id="MsgId" style="color:#f00; text-align:center; height:30px; line-height:50px;"></div>
+            <div style="display:none;">
+               
+                @Html.EditorFor(model => model.wx_tokenid)
+            </div>
+		<div class="ccent"><input type="submit" value="绑定" class="cbtn" /></div>
+ 
+  </div>  
+        }
+    }
+</div>
+    
+</body>
+</html>

@@ -1,0 +1,10 @@
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.dll
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.pdb
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP\obj\Debug\Seebon.Weixin.MP.dll
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP\obj\Debug\Seebon.Weixin.MP.pdb
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP\obj\Debug\Seebon.Weixin.MP.csprojResolveAssemblyReference.cache
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.dll
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.pdb
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP\obj\Debug\Seebon.Weixin.MP.csprojResolveAssemblyReference.cache
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP\obj\Debug\Seebon.Weixin.MP.dll
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP\obj\Debug\Seebon.Weixin.MP.pdb

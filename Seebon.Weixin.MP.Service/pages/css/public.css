@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* CSS Document */
+body,ul, ol, dl, li, dt, dd,  blockquote,pre, form, fieldset, table, th, td, div {margin:0; padding:0; font-family:SimHei,Arial, Helvetica, sans-serif;}
+h1,h2,h3,h4,h5,h6{ margin:0; padding:0; line-height:normal;}
+img{ border:none; margin:0; padding:0; font-size:0px; max-width:100%; height:auto;}
+li{ list-style:none;}
+.clear{ clear:both; margin:0; padding:0; font-size:0px;}
+body{background:url(../images/headbg.jpg) repeat-x;}
+.float{ display:inline-block;zoom:1;*display:inline; vertical-align:top; }
+.h6{ height:6px; line-height:6px; display:block;}
+
+/* 字体设置 */
+a:link{ color:#888888; text-decoration:none;}
+a:visited{ color:#888888; text-decoration:none;}
+a:hover{ color:#eb5504; text-decoration:none;}
+
+
+/*主页设置*/
+.bmain{ max-width:480px; margin:auto; overflow:hidden;}
+.bmain .head{}
+.bmain .head .hleft{background:url(../images/tbg.png) left repeat-x; position:relative;}
+.bmain .head .hleft span{ left:30%; position:absolute;}
+.bmain .head .hright{ background:url(../images/tbg1.png) left repeat-x; height:45px; line-height:45px; text-align:center; color:#ed6c00; font-size:24px;}
+
+.bmain .contxt{ padding:3px 10px 15px 10px; background-color:#ebecec;}
+.bmain .contxt ul li{ margin-top:12px;}
+
+.bmain .contxt ul li span{ height:37px; line-height:37px; display:block; text-align:center; font-size:20px; color:#ffffff;}
+
+/*HR信息系统*/
+.bmain .acontxt{ padding:10px 15px 30px; }
+.bmain .acontxt .alist .atitle{ background:url(../images/fk.png) left no-repeat; color:#ee7600; font-size:24px; text-indent:30px; height:45px; line-height:45px; display:block; font-weight:800;}
+.bmain .acontxt .alist .acon1{ color:#595757; font-size:20px; line-height:30px;}
+.bmain .acontxt .alist .atit{color:#ee7600; height:30px; line-height:30px;}
+.bmain .acontxt .alist .acon2{ color:#3e3a39; line-height:20px;}
+
+/*HR业务流程外包*/
+.bmain  .acontxt .alist .bul1{ margin:20px 0px 35px;}
+.bmain  .acontxt .alist .bul1 li{ margin-top:10px;}
+.bmain  .acontxt .alist .bul1 li strong{ border-radius:8px; display:block; height:30px; line-height:30px; font-size:18px; color:#ffffff; padding-left:10px; font-weight:500;}
+.bmain  .acontxt .alist .bul1 li span{ padding:10px; background:#dcdddd; border-radius:8px; display:block; margin-top:2px; color:#595757; line-height:23px;}
+.bmain .acontxt .alist .bcon1{ margin-top:15px; float:left;}
+.bmain .acontxt .alist .bcon1 .btitle{ color:#FFFFFF; text-align:center; display:block; height:30px; line-height:30px;}
+.bmain .acontxt .alist .bcon1 .bcon2{ font-size:14px; color:#595757; background-color:#dddddd; padding:15px 12px; line-height:18px;}
+.bmain .acontxt .alist .bcon1 .bcon2 span{ font-size:16px; color:#595757; border-bottom:2px dashed #595757; height:30px; line-height:30px; }
+
+/*福利外包*/
+.bmain .acontxt .ccon1{ color:#595757;}
+.bmain .acontxt .ccon1 span{ display:block; line-height:22px;}
+.bmain .acontxt .ccon1 .ctit1{ height:35px; line-height:35px; margin-top:15px;}
+.bmain .acontxt .alist .ccon2{ background:#dddddd; padding:8px;}
+.bmain .acontxt .alist .ccon2 span{ display:block; color:#595757; font-size:14px; font-weight:600; line-height:22px;}
+.bmain .acontxt .alist .ccon2 .ctit2{ color:#ee7600;}
+
+/*劳动法务咨询*/
+
+/*人才派遣解决方案*/
+.bmain .acontxt .alist .bcon1 .econ{ background:#dddddd; float:left; padding-bottom:15px;}
+.bmain .acontxt .alist .bcon1 .econ1{ margin:10px 0px 0px 20px; width:190px; float:left; color:#595757;}
+.bmain .acontxt .alist .bcon1 .econ1 .etit1{ font-size:20px; height:30px; line-height:30px;}
+.bmain .acontxt .alist .bcon1 .econ1 .econ2{line-height:23px; font-size:17px; padding-left:20px;}
+
+/*仕邦学院*/
+.bmain .acontxt .alist .fcon{ font-weight:600;}
+.bmain .acontxt .alist .fcon .ftit1{ color:#FFFFFF; font-size:15px; display:block; height:25px; line-height:25px; padding-left:8px; border-radius:6px;}
+.bmain .acontxt .alist .fcon .fcon1{padding-left:8px; border-radius:6px; background:#dcdddd; min-height:55px; color:#3e3a39; display:block; overflow:hidden;}
+.bmain .acontxt .alist .fcon .fcon1 .fcon2{ float:left; line-height:55px; width:65px; font-size:14px; border-right:3px solid #FFFFFF; margin-bottom:-9999px; padding-bottom:9999px; }
+.bmain .acontxt .alist .fcon .fcon1 .fcon3{ font-size:12px; width:370px; vertical-align:middle; display:table-cell;  min-height:55px; padding:5px 0px; }
+
+/*业务流程外包*/
+
+/*招聘中心*/
+.bmain .acontxt .alist .hul1 li{ padding:8px 15px; border-radius:8px; color:#ffffff; margin-bottom:6px;}
+.bmain .acontxt .alist .hul1 li strong{ display:block; height:20px; line-height:20px; font-size:17px; font-weight:600;}
+.bmain .acontxt .alist .hul1 li span{ font-size:15px; line-height:20px;}

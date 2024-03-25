@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Seebon.Weixin.MP.Service.CommonService.Model.wp_ePayAccFund_Result>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <title>公积金列表</title>
+</head>
+    <body>
+        
+        <div class="bmain">
+  <div class="head">
+    <div class="hleft"><a href="#"><img src="/Content/images/syt.png" alt="仕邦人力资源有限公司" /></a><span><img src="/Content/images/logo.png" /></span></div>
+	<div class="hright">公积金查询</div>
+  </div>
+  
+  <div class="contxt">
+    <ul class="ulist">
+         @foreach (var item in Model)
+         {
+             <li><a href="@Url.Action("AccDetail",new{wp_tokenid=ViewBag.OpenId,year=item.year,month=item.month})">
+                     <div class="cp1"><span class="csp1">@Html.DisplayFor(modelItem => item.year)</span><span class="csp2">@Html.DisplayFor(modelItem => item.month)月</span></div>
+                     <div class="cp2"><span>缴费基数:@Html.DisplayFor(modelItem => item.baseAcc)</span><span>单位缴费:@Html.DisplayFor(modelItem => item.compAcc)</span><span>个人缴费:@Html.DisplayFor(modelItem => item.persAcc)</span></div>
+                 </a></li>
+         }
+	    
+	</ul>
+    <div class="dmore"><a href="#">更多...</a></div>
+  </div>
+</div>  
+        
+    </body>
+</html>

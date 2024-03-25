@@ -1,0 +1,63 @@
+﻿@model Seebon.Weixin.MP.Service.CommonService.Model.Resem
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>电子简历</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link  rel="stylesheet" href="/Content/css/style.css" />
+    <script language="JavaScript">
+        function is_weixn() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+   </script> 
+</head>
+<body>
+<div class="bmain">
+  <div class="head">
+    <div class="hleft"><a href="index.html"><img src="/Content/images/syt.png" alt="仕邦人力资源有限公司" /></a><span><img src="/Content/images/logo.png" /></span></div>
+     <div class="hright">电子简历</div>
+  </div>
+  
+
+  <div class="contxt conjl">
+      @if(Model!=null){
+      <div class="jlshow">
+          <strong>姓名</strong>
+          <span>@Html.DisplayFor(m => m.Name)</span>
+          <strong>性别</strong>
+         <span> @(Model.Sex==1?Html.Raw("男"):Html.Raw("女"))</span>
+          <strong>年龄</strong>
+     <span> @Html.DisplayFor(m => m.Age)</span>
+          <strong>毕业院校</strong>
+     <span> @Html.DisplayFor(m => m.School)</span>  
+          <strong>学历</strong>
+     <span> @Html.DisplayFor(m => m.Education) </span> 
+          <strong>专业</strong>
+     <span> @Html.DisplayFor(m => m.Major) </span> 
+          <strong>电话</strong>
+     <span> @Html.DisplayFor(m => m.Tel) </span> 
+          <strong>工作经验</strong>
+     <span>  @Html.DisplayFor(m => m.Experience)</span>	 
+          </div> 
+      }else{
+        <span>找不相关简历</span>
+      }
+  </div>
+   
+</div>  
+</body>
+</html>

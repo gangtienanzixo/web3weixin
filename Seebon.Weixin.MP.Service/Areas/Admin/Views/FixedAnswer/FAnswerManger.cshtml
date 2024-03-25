@@ -1,0 +1,152 @@
+﻿@model Seebon.Weixin.MP.Service.CommonService.Model.FixedAnswer
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>添加消息</title>
+     @Scripts.Render("~/bundles/jquery")
+     @Styles.Render("~/Content/Admin/AdminCss")
+    <script src="/Scripts/Admin/manager.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var SMsgType = $("#MsgType").val();
+            SetDiv(SMsgType);
+
+            $('#MsgType').change(function(){
+                var p1 = $(this).children('option:selected').val();
+                SetDiv(p1);
+            })
+        })
+
+        function SetDiv(SMsgType)
+        {
+            if (SMsgType == "text") {
+                $(".textdiv").show();
+                $(".musicdiv").hide();
+                $(".newsdiv").hide();
+            }
+            else if (SMsgType == "music") {
+                $(".textdiv").hide();
+                $(".musicdiv").show();
+                $(".newsdiv").hide();
+            }
+            else if (SMsgType == "news") {
+                $(".textdiv").hide();
+                $(".musicdiv").hide();
+                $(".newsdiv").show();
+            }
+        }
+    </script>
+</head>
+<body style="padding:10px;">
+@using (Html.BeginForm("FAnswerManger", "", FormMethod.Post, new { enctype = "multipart/form-data" })){
+    @Html.ValidationSummary(true)
+    <div class="navigation">
+      <span class="back"><a href="/Admin/FixedAnswer/Index">返回消息列表</a></span><b>您当前的位置：首页 &gt; 系统管理 &gt; 添加/修改消息</b>
+    </div>
+    <div style="padding-bottom:10px;"></div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="msgtable">
+              <tr>
+                <th colspan="2" align="left">消息设置</th>
+              </tr>
+              <tr>
+                <td width="25%" align="right">关键字：</td>
+                <td width="75%">
+                @Html.TextBoxFor(m => m.key, new {@class="input required" })
+                @Html.ValidationMessageFor(m=>m.key)
+                </td>
+              </tr>
+              <tr>
+                <td align="right">消息类型：</td>
+                <td>
+                @Html.DropDownList("MsgType",ViewData["SMsgType"] as IEnumerable<SelectListItem>)
+                </td>
+              </tr>
+
+              <tr class="textdiv">
+                <td align="right">返回内容：</td>
+                <td>
+                 @Html.TextAreaFor(m => m.content, new {@class="textarea required" })
+                 @Html.ValidationMessageFor(m=>m.content)
+                </td>
+              </tr>
+
+
+              <tr class="musicdiv">
+                <td align="right">音乐路径：</td>
+                <td>
+                 @Html.TextBoxFor(m => m.MusicUrl, new {@class="input" })
+                 <input type="button" value="上传" onclick="ShowUploadDIV('UploadDiv', 'MusicUrl')" />
+                </td>
+              </tr>
+              <tr class="musicdiv">
+                <td align="right">高品质音乐：</td>
+                <td>
+                 @Html.TextBoxFor(m=>m.HQMusicUrl, new {@class="input required" })
+                 <input type="button" value="上传" onclick="ShowUploadDIV('UploadDiv', 'HQMusicUrl')" />
+                </td>
+              </tr>
+
+
+              <tr class="newsdiv">
+                <td align="right">标题：</td>
+                <td>
+                @Html.TextBoxFor(m => m.Title, new { @class = "input email" })
+                 @Html.ValidationMessageFor(m => m.Title)
+                </td>
+              </tr>              
+              <tr class="newsdiv">
+                <td align="right">描述：</td>
+                <td>
+                 @Html.TextAreaFor(m => m.Description, new {@class="textarea required" })
+                 @Html.ValidationMessageFor(m => m.Description)
+                </td>
+              </tr>
+              <tr class="newsdiv">
+                <td align="right">图片：</td>
+                <td>
+                 @Html.TextBoxFor(m=>m.PicUrl, new {@class="input required" })
+                 <input type="button" value="上传" onclick="ShowUploadDIV('UploadDiv', 'PicUrl')" />
+                </td>
+              </tr>
+              <tr class="newsdiv">
+                <td align="right">链接：</td>
+                <td>
+                 @Html.TextBoxFor(m => m.Url, new { @class = "input email" })
+                 @Html.ValidationMessageFor(m => m.Url)
+                </td>
+              </tr>
+            </table>
+            
+          
+          <div style="margin-top:10px; text-align:center;">
+            <input type="submit" value="确认保存" class="submit" />
+&nbsp;&nbsp; 
+            <input type="reset" name="button" id="button" value="重 置" class="submit" />
+          </div>   
+}
+
+  <!--遮罩层上传DIV-->
+  <div id="UploadHideDiv"></div>
+  <div id="UploadDiv" style="display:none">
+    <h2><a href="#" id="btnClose" onclick="closeDiv('UploadDiv')"><img src="/Content/Admin/Images/disable.gif" /></a></h2>
+   <div class="form">
+     @using (Html.BeginForm("Upload", "Common", FormMethod.Post, new {id="FromUpload",enctype = "multipart/form-data" }))
+     { 
+        <input type="hidden" id="hloadname" value="" />
+       <input type="file" name="FilePic" id="FilePic" /><input type="button" class="files" onclick="fromUpload();" value="上传" />
+       <span class="uploading"><img src="~/Content/Admin/Images/loading.gif" /></span>
+     }
+   </div>
+  </div>
+<!--遮罩层上传DIV-->
+    @section Scripts{
+      @Scripts.Render("~/bundles/jqueryval")
+    }
+</body>
+</html>

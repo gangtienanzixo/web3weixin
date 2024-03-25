@@ -1,0 +1,12 @@
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.Service.CommonService.dll.config
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.Service.CommonService.dll
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.Service.CommonService.pdb
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.Service.CommonService\obj\Debug\Seebon.Weixin.MP.Service.CommonService.csprojResolveAssemblyReference.cache
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.Service.CommonService\obj\Debug\Seebon.Weixin.MP.Service.CommonService.dll
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.Service.CommonService\obj\Debug\Seebon.Weixin.MP.Service.CommonService.pdb
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.Service.CommonService.dll.config
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.Service.CommonService.dll
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.Service.CommonService.pdb
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP.Service.CommonService\obj\Debug\Seebon.Weixin.MP.Service.CommonService.csprojResolveAssemblyReference.cache
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP.Service.CommonService\obj\Debug\Seebon.Weixin.MP.Service.CommonService.dll
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP.Service.CommonService\obj\Debug\Seebon.Weixin.MP.Service.CommonService.pdb

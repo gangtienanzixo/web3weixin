@@ -1,0 +1,117 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>后台管理</title>
+     @Styles.Render("~/Content/Admin/AdminCss")
+     @Scripts.Render("~/bundles/AdminJs")
+</head>
+<body>
+@using (Html.BeginForm())
+{
+<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" style="background:#EBF5FC;">
+<tbody>
+  <tr>
+    <td height="70" colspan="3" style="background:url(/Content/Admin/Images/head_bg.gif);"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="24%" height="70"><img src="/Content/Admin/Images/head_logo.png" width="233" height="50"></td>
+        <td width="76%" valign="bottom">
+	  <!--导航菜单,与下面的相关联,修改时注意参数-->
+          <div id="tabs">
+          <ul>
+			<li onclick="tabs(1);"><a href="Article/List.aspx" target="sysMain"><span>内容管理</span></a></li>
+			<li onclick="tabs(2);"><a href="/Admin/GuestBook/Index" target="sysMain"><span>插件管理</span></a></li>
+			<li onclick="tabs(3);"><a href="/Admin/Manage/AdminList" target="sysMain"><span>系统管理</span></a></li>
+           <li onclick="tabs(4);"><a href="/Admin/Customer/ClientList" target="sysMain"><span>客户管理</span></a></li>
+ @*            <li onclick="tabs(5);"><a href="Express/List.aspx" target="sysMain"><span>快递查询</span></a></li>*@
+          </ul>
+          </div>
+
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="30" colspan="3" style="padding:0px 10px;font-size:12px;background:url(/Content/Admin/images/navsub_bg.gif) repeat-x;">
+    <div style="float:right;line-height:20px;"><a href="AdminCenter" target="sysMain">管理中心</a> | 
+        <a target="_blank" href="/">预览网站</a> | @Html.ActionLink("安全退出","AdminExit")
+        </div>
+    <div style="padding-left:20px;line-height:20px;background:url(/Content/Admin/images/siteico.gif) 0px 0px no-repeat;">当前登录用户：<font color="#FF0000">@*<asp:Label
+        ID="lblAdminName" runat="server" Text="Label"></asp:Label>*@</font>您好，欢迎光临。</div>
+    </td>
+  </tr>
+
+  <tr style="height:630px;">
+    <td align="middle" id="mainLeft" valign="top" style="background:#FFF;">
+	  <div style="text-align:left;width:185px;height:100%;font-size:12px;">
+        <!--导航顶部-->
+        <div style="padding-left:10px;height:29px;line-height:29px;background:url(/Content/Admin/images/menu_bg.gif) no-repeat;">
+          <span style="padding-left:15px;font-weight:bold;color:#039;background:url(/Content/Admin/images/menu_dot.gif) no-repeat;">功能导航</span>
+        </div>
+        <!--导航菜单,修改时注意顺序-->
+        <div class="left_menu">
+          <ul>
+            
+            <li onclick="tabs(1);"><a href="Article/List.aspx" target="sysMain">内容管理</a></li>
+            <li onclick="tabs(2);"><a href="/Admin/GuestBook/Index" target="sysMain">插件管理</a></li>
+            <li onclick="tabs(3);"><a href="/Admin/Manage/AdminList" target="sysMain">系统管理</a></li>
+            <li onclick="tabs(4);"><a href="/Admin/Customer/ClientList" target="sysMain"><span>客户管理</span></a></li>
+          </ul>
+        </div>
+        
+        <div class="left_menu">
+          <ul>
+            <li><a href="Article/Add.aspx?cid=0" target="sysMain">发布内容</a></li>
+            <li><a href="Article/List.aspx" target="sysMain">内容管理</a></li>
+          </ul>
+          <ul>
+            <li><a href="Channel/Add.aspx?kindId=1" target="sysMain">增加类别</a></li>
+            <li><a href="Channel/List.aspx?kindId=0" target="sysMain">类别管理</a></li>
+          </ul>
+        </div>
+
+        <div class="left_menu">
+          <ul>
+            <li><a target="sysMain" href="/Admin/GuestBook/Index">留言管理</a></li> 
+            <li><a target="sysMain" href="/Admin/FixedAnswer/Index">消息管理</a></li>       
+          </ul>
+        </div>
+
+        <div class="left_menu">
+          <ul>
+            <li><a target="sysMain" href="/Admin/Manage/AdminList">管理员管理</a></li>
+            <li><a target="sysMain" href="/Admin/Customer/Index">客服管理</a></li>
+            <li><a target="sysMain" href="/Admin/FocusUser/Index">关注者管理</a></li>
+          </ul>
+        </div>
+        
+         <div class="left_menu">
+             <ul>
+                 <li><a target="sysMain" href="/Admin/Customer/MyClientList">我的在线客户</a></li>
+                 <li><a target="sysMain" href="/Admin/Customer/MyMsgList">我的在线信息</a></li>
+                 <li><a target="sysMain" href="/Admin/Customer/ClientList">在线客户</a></li>
+             </ul>
+        </div>
+
+      </div>
+	</td>
+	<td valign="middle" style="width:8px;background:url(images/main_cen_bg.gif) repeat-x;">
+      <div id="sysBar" style="cursor:pointer;"><img id="barImg" src="/Content/Admin/images/butClose.gif" alt="关闭/打开左栏" /></div>
+	</td>
+	<td style="width:100%; height:630px;" valign="top">
+      <iframe frameborder="0" id="sysMain" name="sysMain" scrolling="yes" src="/Admin/Manage/AdminCenter" style="height:100%;visibility:inherit; width:100%;z-index:1;"></iframe>
+	</td>
+  </tr>
+  <tr>
+    <td height="28" colspan="3" bgcolor="#EBF5FC" style="padding:0px 10px;font-size:10px;color:#2C89AD;background:url(/Content/Admin/images/foot_bg.gif) repeat-x;">@*<%=webset.WebCopyright.ToString()%>*@</td>
+  </tr>
+  </tbody>
+</table>
+}
+</body>
+</html>

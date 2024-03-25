@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("SendMessage","Test"))
+{
+    <input name="msg" type="text" /><input name="openid" type="text" value="oXJx0jv7inCkMvITOn1eAj9yOvMc"/><input type="submit" id="btnSend" />
+}
+

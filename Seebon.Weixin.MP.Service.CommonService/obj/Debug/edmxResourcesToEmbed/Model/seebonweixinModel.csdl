@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="seebonweixinModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="seebonweixinEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administrator" EntityType="seebonweixinModel.Administrator" />
+    <EntitySet Name="BindUsers" EntityType="seebonweixinModel.BindUsers" />
+    <EntitySet Name="ConsultList" EntityType="seebonweixinModel.ConsultList" />
+    <EntitySet Name="DialogRecord" EntityType="seebonweixinModel.DialogRecord" />
+    <EntitySet Name="FixedAnswer" EntityType="seebonweixinModel.FixedAnswer" />
+    <EntitySet Name="FocusUsers" EntityType="seebonweixinModel.FocusUsers" />
+    <EntitySet Name="GuestBook" EntityType="seebonweixinModel.GuestBook" />
+    <EntitySet Name="LogAccount" EntityType="seebonweixinModel.LogAccount" />
+    <EntitySet Name="LoginRecord" EntityType="seebonweixinModel.LoginRecord" />
+    <EntitySet Name="OnlineClient" EntityType="seebonweixinModel.OnlineClient" />
+    <EntitySet Name="OnlineCustomer" EntityType="seebonweixinModel.OnlineCustomer" />
+    <FunctionImport Name="getNameByIdCard" ReturnType="Collection(String)">
+      <Parameter Name="idCardId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="newseebon_Login">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="s_user_Login" ReturnType="Collection(seebonweixinModel.s_user_Login_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="LogIP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="wp_ePayAccFund" ReturnType="Collection(seebonweixinModel.wp_ePayAccFund_Result)">
+      <Parameter Name="idCardId" Mode="In" Type="String" />
+      <Parameter Name="startYear" Mode="In" Type="Int32" />
+      <Parameter Name="startMonth" Mode="In" Type="Int32" />
+      <Parameter Name="endYear" Mode="In" Type="Int32" />
+      <Parameter Name="endMonth" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="wp_ePaySocialInsur" ReturnType="Collection(seebonweixinModel.wp_ePaySocialInsur_Result)">
+      <Parameter Name="idCardId" Mode="In" Type="String" />
+      <Parameter Name="startYear" Mode="In" Type="Int32" />
+      <Parameter Name="startMonth" Mode="In" Type="Int32" />
+      <Parameter Name="endYear" Mode="In" Type="Int32" />
+      <Parameter Name="endMonth" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getMyOnlineClientList" ReturnType="Collection(seebonweixinModel.getMyOnlineClientList_Result)">
+      <Parameter Name="ConnectUserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getOnlineClientList" ReturnType="Collection(seebonweixinModel.getOnlineClientList_Result)" />
+    <EntitySet Name="Customer" EntityType="seebonweixinModel.Customer" />
+    <EntitySet Name="customerlog" EntityType="seebonweixinModel.customerlog" />
+    <EntitySet Name="customerrecord" EntityType="seebonweixinModel.customerrecord" />
+    <EntitySet Name="Resem" EntityType="seebonweixinModel.Resem" />
+  </EntityContainer>
+  <EntityType Name="Administrator">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UserPwd" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ReadName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UserEmail" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UserType" Type="Int32" />
+    <Property Name="IsLock" Type="Int32" />
+  </EntityType>
+  <EntityType Name="BindUsers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idcard" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="weixinid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="bindtime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isenabled" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConsultList">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tousername" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="fromusername" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="reqorrep" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="msgtype" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="msgid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="content" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+    <Property Name="picurl" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+    <Property Name="location_x" Type="Double" />
+    <Property Name="location_y" Type="Double" />
+    <Property Name="scale" Type="Int32" />
+    <Property Name="label" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+    <Property Name="title" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="description" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+    <Property Name="url" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+    <Property Name="event" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="eventkey" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="musicurl" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+    <Property Name="hqmusicurl" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+    <Property Name="articlecount" Type="Int32" />
+    <Property Name="articles" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="DialogRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FromId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ToId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Content" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="SendTime" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <Property Type="String" Name="msgtype" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="media_id" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="title" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="description" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="musicurl" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="hqmusicurl" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="thumb_media_id" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="url" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="picurl" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="FixedAnswer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="key" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="MsgType" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="content" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+    <Property Name="MusicUrl" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="HQMusicUrl" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="Title" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+    <Property Name="PicUrl" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Url" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="AccessUser" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="FocusUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Openid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="nickname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="sex" Type="Int32" />
+    <Property Name="city" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="country" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="province" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="language" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="headimgurl" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
+    <Property Name="subscribe_time" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="GuestBook">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TelType" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Tel" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Content" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="LogAccount">
+    <Key>
+      <PropertyRef Name="LoginId" />
+    </Key>
+    <Property Name="LoginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoginName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="NickName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="GroupId" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="LoginRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoginId" Type="Int32" Nullable="false" />
+    <Property Name="LoginTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LogoutTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LoginIP" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="OnlineClient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OpenId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="OnlineTime" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Name="ConnectUserName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" annotation:StoreGeneratedPattern="None" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OnlineCustomer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoginId" Type="Int32" Nullable="false" />
+    <Property Name="LoginTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <ComplexType Name="s_user_Login_Result">
+    <Property Type="Int32" Name="userID" Nullable="true" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="kind" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="wp_ePayAccFund_Result">
+    <Property Type="Int32" Name="year" Nullable="false" />
+    <Property Type="Int32" Name="month" Nullable="false" />
+    <Property Type="Decimal" Name="baseAcc" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="compAcc" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="persAcc" Nullable="false" Precision="18" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="wp_ePaySocialInsur_Result">
+    <Property Type="String" Name="year" Nullable="false" MaxLength="4" />
+    <Property Type="Int32" Name="month" Nullable="false" />
+    <Property Type="Decimal" Name="baseOld" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="compOld" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="persOld" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="baseJob" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="compJob" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="persJob" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="baseMed" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="compMed" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="persMed" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="MainMed" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="baseBear" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="compBear" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="baseComp" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="compComp" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AGFee" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="detail" Nullable="true" MaxLength="2000" />
+  </ComplexType>
+  <ComplexType Name="getOnlineClientList_Result">
+    <Property Type="String" Name="OpenId" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="OnlineTime" Nullable="false" Precision="23" />
+    <Property Type="String" Name="ConnectUserName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="nickname" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="getMyOnlineClientList_Result">
+    <Property Type="String" Name="OpenId" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="OnlineTime" Nullable="false" Precision="23" />
+    <Property Type="String" Name="ConnectUserName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Status" Nullable="false" />
+    <Property Type="String" Name="nickname" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="custid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="status" Nullable="false" />
+    <Property Type="DateTime" Name="logintime" Precision="3" />
+    <Property Type="String" Name="clientid" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="connecttime" Precision="3" />
+    <Property Type="String" Name="accountname" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Type="Int32" Name="logid" />
+  </EntityType>
+  <EntityType Name="customerlog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="custid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="logintime" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="logouttime" Precision="3" />
+  </EntityType>
+  <EntityType Name="customerrecord">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="custid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="clientid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="starttime" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="finishtime" Precision="3" />
+    <Property Type="Int32" Name="finishtype" />
+  </EntityType>
+  <EntityType Name="Resem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Sex" Nullable="false" />
+    <Property Type="Int32" Name="Age" />
+    <Property Type="String" Name="School" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Major" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Education" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Tel" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Experience" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Guid" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

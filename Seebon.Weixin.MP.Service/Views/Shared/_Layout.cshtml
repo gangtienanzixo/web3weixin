@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+    @RenderSection("HeaderContent",false)
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">
+                    <a href="~/">Seebon微信服务号</a>
+                </p>
+            </div>
+            <div class="float-right">
+                <nav>
+                    <ul id="menu">
+                        <li>@Html.ActionLink("首页", "Index", "Home")</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        <section class="featured">
+            <div class="content-wrapper">
+                <hgroup class="title">
+                    <h1>欢迎光临Seebon微信服务号</h1>
+                </hgroup>
+                
+                <p>
+                    &nbsp;
+                </p>
+            </div>
+        </section>
+        @RenderBody()
+    </div>
+
+    <footer>
+        
+        <p>&copy;2013 Seebon</p>
+    </footer>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

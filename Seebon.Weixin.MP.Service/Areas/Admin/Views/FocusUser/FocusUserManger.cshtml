@@ -1,0 +1,92 @@
+﻿@model Seebon.Weixin .MP .Service.CommonService.Model.FocusUsers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>关注者详情</title>
+     @Scripts.Render("~/bundles/jquery")
+     @Styles.Render("~/Content/Admin/AdminCss")
+</head>
+<body style="padding:10px;">
+@using (Html.BeginForm()){
+    @Html.ValidationSummary(true)
+    <div class="navigation">
+      <span class="back"><a href="../Index">返回关注者列表</a></span><b>您当前的位置：首页 &gt; 系统管理 &gt; 关注者详情</b>
+    </div>
+    <div style="padding-bottom:10px;"></div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="msgtable">
+              <tr>
+                <th colspan="2" align="left">关注者详情</th>
+              </tr>
+              <tr>
+                <td width="25%" align="right">用户头像：</td>
+                <td width="75%">
+                 <img src="@Model.headimgurl" width="64px" height="64px" />
+                </td>
+              </tr>
+              <tr>
+                <td align="right">用户Openid：</td>
+                <td>
+                  @Html.DisplayFor(m=>m.Openid)
+                </td>
+              </tr>
+              <tr>
+                <td align="right">用户昵称：</td>
+                <td>
+                  @Html.DisplayFor(m=>m.nickname)
+                </td>
+              </tr>
+              <tr>
+                <td align="right">性别：</td>
+                <td>
+                 @{ if (Model.sex == 0) { @Html.Raw("未知");
+                    }
+                    else if (Model.sex == 1) {@Html.Raw("男"); }else{@Html.Raw("女");}
+                 }
+                </td>
+              </tr>
+              <tr>
+                <td align="right">国家：</td>
+                <td>
+                  @Html.DisplayFor(m=>m.country)
+                </td>
+              </tr>
+              <tr>
+                <td align="right">省份：</td>
+                <td>
+                  @Html.DisplayFor(m=>m.province)
+                </td>
+              </tr>
+              <tr>
+                <td align="right">城市：</td>
+                <td>
+                  @Html.DisplayFor(m=>m.city)
+                </td>
+              </tr>
+              
+              <tr>
+                <td align="right">语言：</td>
+                <td>
+                  @(Model.language=="zh_CN"?@Html.Raw("简体中文"):@Html.Raw(Model.language))
+                </td>
+              </tr>
+              <tr>
+                <td align="right">用户关注时间：</td>
+                <td>
+                  @Html.DisplayFor(m=>m.subscribe_time)
+                </td>
+              </tr>
+            </table>
+            
+}
+
+    @section Scripts{
+      @Scripts.Render("~/bundles/jqueryval")
+    }
+</body>
+</html>

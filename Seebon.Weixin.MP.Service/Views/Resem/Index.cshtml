@@ -1,0 +1,77 @@
+﻿@model Seebon.Weixin.MP.Service.CommonService.Model.Resem
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>电子简历</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link  rel="stylesheet" href="/Content/css/style.css" />
+    <link  rel="stylesheet" href="/Content/Site.css" />
+    <script src="~/Scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        function OnSuccess(response) {           
+        }
+        function OnFailure(response) {
+            alert("错误，请联系管理员");
+        }
+
+function is_weixn(){
+    var ua = navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+   </script>
+</head>
+<body>
+<div class="bmain">
+  <div class="head">
+    <div class="hleft"><a href="index.html"><img src="/Content/images/syt.png" alt="仕邦人力资源有限公司" /></a><span><img src="/Content/images/logo.png" /></span></div>
+     <div class="hright">电子简历</div>
+  </div>
+  
+  @using(Html.BeginForm()){
+       @Html.ValidationSummary(true)
+  <div class="contxt conjl">
+      <div class="zxjl">
+      @Html.TextBoxFor(m => m.Name, new { @class="ztxt",@placeholder="您的姓名(必填)"}) 
+         @Html.ValidationMessageFor(m=>m.Name)
+        <div class="zradio">
+           @Html.RadioButtonFor(m => m.Sex, "1")男
+           @Html.RadioButtonFor(m => m.Sex, "2")女
+       </div>
+             @Html.ValidationMessageFor(m=>m.Sex)
+      @Html.TextBoxFor(m => m.Age, new { @class="ztxt", @placeholder="您的年龄(必填)"})
+             @Html.ValidationMessageFor(m=>m.Age)
+      @Html.TextBoxFor(m => m.School, new { @class="ztxt", @placeholder="您的毕业院校(必填)"}) 
+             @Html.ValidationMessageFor(m=>m.School) 
+      @Html.TextBoxFor(m => m.Education, new { @class="ztxt", @placeholder="您的学历(必填)"})  
+             @Html.ValidationMessageFor(m=>m.Education)
+      @Html.TextBoxFor(m => m.Major, new { @class="ztxt", @placeholder="您的专业(必填)"})  
+             @Html.ValidationMessageFor(m=>m.Major)
+      @Html.TextBoxFor(m => m.Tel, new { @class="ztxt", @placeholder="您的电话(必填)"})  
+             @Html.ValidationMessageFor(m=>m.Tel)
+       @Html.TextAreaFor(m => m.Experience, new {@class="zarea",@placeholder="您的工作经验（必填）"})	
+             @Html.ValidationMessageFor(m=>m.Experience) 
+          </div> 
+      <div id="MsgId" style="color:#f00;"></div>
+	 <div class="jlsub"><input type="submit" value="立 即 添 加" /></div>
+  </div>
+    }  
+</div>  
+</body>
+</html>

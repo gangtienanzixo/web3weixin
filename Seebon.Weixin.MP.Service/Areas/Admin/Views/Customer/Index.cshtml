@@ -1,0 +1,123 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model IEnumerable<Seebon.Weixin .MP .Service.CommonService.Model.Customer>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+<title>管理员管理</title>
+     @Scripts.Render("~/bundles/AdminJs")
+     @Styles.Render("~/Content/Admin/AdminCss")
+      @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+
+    $(function () {
+        var cb_id = document.getElementsByName("cb_id").value;
+
+        $(".msgtable tr:nth-child(odd)").addClass("tr_bg"); //隔行变色
+        $(".msgtable tr").hover(
+			function () {
+			    $(this).addClass("tr_hover_col");
+			},
+			function () {
+			    $(this).removeClass("tr_hover_col");
+			}
+		);
+    });
+
+    function DelAll() {
+        var str = document.getElementsByName("cb_id");
+        var objarray = str.length;
+        var chestr = "";
+        for (i = 0; i < objarray; i++) {
+            if (str[i].checked == true) {
+                chestr += str[i].value + ",";
+            }
+        }
+        if (chestr != "")
+            if (confirm('删除后不可恢复,确认要批量删除选中记录吗？')) {
+                $.ajax(
+                  {
+                      type: 'POST',
+                      url: 'DeleteAll',
+                      dataType: 'text',
+                      data: { cb_id: chestr },
+                      cache: false,
+                      success: function (e) {
+                          if (e == "ok") {
+                              alert("删除成功！");
+                              location.href = "Index";
+                          } else {
+                              alert(e);
+                          }
+                      }
+                  });
+            }
+            else { return; }
+        else {
+
+            alert("请选择要删除的记录!");
+            return;
+        }
+    }
+</script>
+</head>
+<body style="padding:10px;">
+@using (Html.BeginForm())
+{
+        <div class="navigation"><span class="add"><a href="/Admin/Customer/CustomerManger">增加客服</a></span><b>您当前的位置：首页 &gt; 系统管理 &gt; 客服列表</b></div>
+        <div style="padding-bottom:10px;"></div>
+        <div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="msgtable">
+              <tr>
+                <th width="7%">选择</th>
+                <th width="17%">客服</th>
+                <th width="16%">OpenId</th>
+                <th width="25%">登陆时间</th>
+                <th width="22%">状态</th>
+                <th width="13%">操作</th>
+              </tr>
+
+            @foreach (var item in Model)
+            {
+              <tr align="center">
+                <td align="center">
+                   <input type="checkbox" class="checkall" id="cb_id" name="cb_id" value="@item.id" />            
+                </td>
+                <td>@Html.DisplayFor(modelItem=>item.accountname)</td>
+                <td>@Html.DisplayFor(modelItem=>item.custid)</td>
+                <td>@Html.DisplayFor(modelItem=>item.logintime)</td>
+                <td align="center">
+                  @(item.status.ToString().Trim()=="1" ? @Html.Raw("<img title='在线' src='/Content/Admin/images/correct.gif' />"):@Html.Raw("<img title='离线' src='/Content/Admin/images/disable.gif' />"))
+                </td>
+                <td align="center"><span>@Html.ActionLink("编辑", "CustomerManger", new { id=item.id})</span></td>
+              </tr>
+            }
+
+            </table>
+
+            
+            <div class="spClear"></div>
+            <div style="line-height:30px;height:30px;">
+              <div id="Pagination" class="right flickr">
+              <link href="~/Content/PagedList.css" rel="stylesheet" />
+               @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p = p }))
+              </div>
+              <div class="left">
+                <span class="btn_all" onclick="checkAll();" id="btncheckall">全选</span>
+                <span class="btn_bg">
+                   <a href="#" onclick="return DelAll();" id="button_del">批量删除</a>
+                  </span>
+              &nbsp;</div>
+	  </div>
+    </div>
+}
+</body>
+</html>

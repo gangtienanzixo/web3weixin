@@ -1,0 +1,63 @@
+﻿@model Seebon.Weixin.MP.Service.CommonService.Model.GuestBook
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>在线留言</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link  rel="stylesheet" href="/Content/css/style.css" />
+    <script src="~/Scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        function OnSuccess(response) {
+            if (response == "ok") {
+                $("#MsgId").html("您的留言已提交,我们会尽快给您回复！");
+                $("#Tel").val("");
+                $("#Content").val("");
+            }
+            else {
+                alert("请填写留言和联系方式！");
+            }
+        }
+        function OnFailure(response) {
+            alert("错误，请联系管理员");
+        }
+
+   </script>
+</head>
+<body>
+<div class="bmain">
+  <div class="head">
+    <div class="hleft"><a href="index.html"><img src="/Content/images/syt.png" alt="仕邦人力资源有限公司" /></a><span><img src="/Content/images/logo.png" /></span></div>
+     <div class="hright">在线留言板</div>
+  </div>
+  
+  @using(Ajax.BeginForm("Index",new AjaxOptions{OnSuccess="OnSuccess",OnFailure="OnFailure"})){
+       @Html.ValidationSummary(true)
+  <div class="contxt">
+     <span><img src="/Content/images/tbg4.png" /></span>
+	 <div class="dts">非常抱歉，没有客服在线，请留下您的问题和联系方式。我们会在收到信息的第一时间联系您。</div>
+	 <div class="dlyk">
+	    <p>您的问题：</p>
+         @Html.TextAreaFor(m => m.Content, new {@class="lyk" })	
+	 </div>
+	 <div class="dlxfs">
+       @Html.DropDownList("TelType")
+       @Html.TextBoxFor(m => m.Tel, new { @placeholder="您的联系方式(必填)"})  
+	 </div>
+      <div id="MsgId" style="color:#f00;"></div>
+	 <div class="dsmb"><input type="submit" value="提交" /></div>
+  </div>
+    }  
+</div>  
+</body>
+</html>

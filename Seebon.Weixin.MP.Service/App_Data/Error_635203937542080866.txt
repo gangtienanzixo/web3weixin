@@ -1,0 +1,5 @@
+ExecptionMessage:未将对象引用设置到对象的实例。
+Seebon.Weixin.MP.Service.CommonService
+   在 Seebon.Weixin.MP.Service.CommonService.CustomMessageHandler.CustomMessageHandler.OnExecuted() 位置 g:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.Service.CommonService\CustomMessageHandler\CustomMessageHandler.cs:行号 45
+   在 Seebon.Weixin.MP.MessageHandlers.MessageHandler`1.Execute() 位置 g:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP\MessageHandlers\MessageHandler.cs:行号 264
+   在 Seebon.Weixin.MP.Service.Controllers.WeixinController.Post(String signature, String timestamp, String nonce, String echostr) 位置 g:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.Service\Controllers\WeixinController.cs:行号 65

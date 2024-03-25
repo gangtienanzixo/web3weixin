@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link  rel="stylesheet" href="css/public.css" />
+<script src="/Scripts/jquery-1.8.2.min.js"></script>
+<script src="/Scripts/jquery.lazyload.js"></script>
+<script language="JavaScript">
+    $(function () {
+        $("img.lazy").lazyload({
+            effect: "fadeIn"
+        });
+    });
+function is_weixn(){
+	var ua = navigator.userAgent.toLowerCase();
+	if(ua.match(/MicroMessenger/i)=="micromessenger") {
+	  return true;
+ 	} else {
+		return false;
+	}
+}
+</script> 
+</head>
+
+<body onload="is_weixn()">
+<div class="bmain">
+  <div class="head">
+    <div class="hleft"><a href="index.html"><img src="images/syt.png" alt="仕邦人力资源有限公司" /></a><span><img src="images/logo.png" /></span></div>
+	<div class="hright">仕邦产品</div>
+  </div>
+  <div class="contxt">
+      <ul>
+	    <li><a href="rcpq.html"><img class="lazy" data-original="images/rcpq.jpg" alt="人才派遣解决方案" /><span style="background-color:#0e6eb8;">人才派遣解决方案</span></a></li>
+		<li><a href="hrywlc.html"><img class="lazy" data-original="images/hryf.jpg" alt="HR业务流程外包" /><span style="background-color:#00a0ea;">HR业务流程外包</span></a></li>
+		<li><a href="ywlc.html"><img class="lazy" data-original="images/ywlc.jpg" alt="业务流程外包" /><span style="background-color:#e71873;">业务流程外包</span></a></li>
+		<li><a href="flwb.html"><img class="lazy" data-original="images/flwb.jpg" alt="福利外包" /><span style="background-color:#f39801;">福利外包</span></a></li>
+		<li><a href="ldfw.html"><img class="lazy" data-original="images/ldfw.jpg" alt="劳动法务咨询" /><span style="background-color:#0ba29b;">劳动法务咨询</span></a></li>
+		<li><a href="zpzx.html"><img class="lazy" data-original="images/zpzx.jpg" alt="招聘中心" /><span style="background-color:#009a44;">招聘中心</span></a></li>
+		<li><a href="sbxy.html"><img class="lazy" data-original="images/sbxy.jpg" alt="仕邦学院" /><span style="background-color:#920784;">仕邦学院</span></a></li>
+		<li><a href="hrxxxt.html"><img class="lazy" data-original="images/hrxx.jpg" alt="HR信息系统" /><span style="background-color:#e70012;">HR信息系统</span></a></li>
+	  </ul>
+  </div>
+</div>
+</body>
+</html>

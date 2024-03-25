@@ -1,0 +1,50 @@
+﻿@model Seebon.Weixin.MP.Service.CommonService.Model.wp_ePaySocialInsur_Result
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link  rel="stylesheet" href="/Content/css/style.css" />
+    <title>社保明细</title>
+</head>
+    <body>
+        
+        <div class="bmain">
+  <div class="head">
+    <div class="hleft"><a href="#"><img src="/Content/images/syt.png" alt="仕邦人力资源有限公司" /></a><span><img src="/Content/images/logo.png" /></span></div>
+	<div class="hright">社保信息明细</div>
+  </div>
+  
+  <div class="contxt1">
+    <ul class="vlist">
+	    <li>年份：@Html.DisplayFor(model => model.year)</li>
+	    <li>月份：@Html.DisplayFor(model => model.month)</li>
+		<li>养老基数： @Html.DisplayFor(model => model.baseOld)</li>
+		<li>单位养老： @Html.DisplayFor(model => model.compOld)</li>
+		<li>个人养老：@Html.DisplayFor(model => model.persOld)</li>
+		<li>失业基数： @Html.DisplayFor(model => model.baseJob)</li>
+		<li>失业(单位)：	 @Html.DisplayFor(model => model.compJob)</li>
+		<li>失业(个人)：	 @Html.DisplayFor(model => model.persJob)</li>
+		<li>医疗基数： @Html.DisplayFor(model => model.baseMed)</li>
+		<li>医疗(单位)：	 @Html.DisplayFor(model => model.compMed)</li>
+		<li>医疗(个人)：	 @Html.DisplayFor(model => model.persMed)</li>
+		<li>医疗重疾： @Html.DisplayFor(model => model.MainMed)</li>
+		<li>生育基数：@Html.DisplayFor(model => model.baseBear)</li>
+		<li>生育(单位)：	 @Html.DisplayFor(model => model.compBear)</li>
+		<li>工伤基数： @Html.DisplayFor(model => model.baseComp)</li>
+		<li>工伤(单位)： @Html.DisplayFor(model => model.compComp)</li>	  
+	</ul>
+  </div>  
+</div>  
+
+        
+    </body>
+</html>

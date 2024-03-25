@@ -1,0 +1,39 @@
+﻿@model Seebon.Weixin.MP.Service.CommonService.Model.wp_ePayAccFund_Result
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link  rel="stylesheet" href="/Content/css/style.css" />
+    <title>公积金明细</title>
+</head>
+    <body>
+        
+        <div class="bmain">
+  <div class="head">
+    <div class="hleft"><a href="#"><img src="/Content/images/syt.png" alt="仕邦人力资源有限公司" /></a><span><img src="/Content/images/logo.png" /></span></div>
+	<div class="hright">公积金明细</div>
+  </div>
+  
+  <div class="contxt1">
+    <ul class="vlist">
+	    <li>年份：@Html.DisplayFor(model => model.year)</li>
+	    <li>月份：@Html.DisplayFor(model => model.month)</li>
+		<li>缴费基数： @Html.DisplayFor(model => model.baseAcc)</li>
+		<li>单位缴费： @Html.DisplayFor(model => model.compAcc)</li>
+		<li>个人缴费：@Html.DisplayFor(model => model.persAcc)</li>
+	</ul>
+  </div>  
+</div>  
+
+        
+    </body>
+</html>

@@ -1,0 +1,118 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model IEnumerable<Seebon.Weixin.MP.Service.CommonService.Model.FocusUsers>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+<title>管理员管理</title>
+     @Scripts.Render("~/bundles/AdminJs")
+     @Styles.Render("~/Content/Admin/AdminCss")
+      @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+
+    $(function () {
+        var cb_id = document.getElementsByName("cb_id").value;
+
+        $(".msgtable tr:nth-child(odd)").addClass("tr_bg"); //隔行变色
+        $(".msgtable tr").hover(
+			function () {
+			    $(this).addClass("tr_hover_col");
+			},
+			function () {
+			    $(this).removeClass("tr_hover_col");
+			}
+		);
+
+        $("#btnsoso").bind("click", function () {
+            var k = $("#txtKey").val();
+            if (k != "" || k != undefined) {
+                location.href = "/Admin/FocusUser/Index?key=" + k;
+            }
+            else {
+                alert("请输入关键词");
+            }
+        })
+    });
+
+</script>
+</head>
+<body style="padding:10px;">
+
+        <div class="navigation"><span class="add"><a href="#">获取最新关注者</a></span><b>您当前的位置：首页 &gt; 系统管理 &gt; 关注者列表</b></div>
+       <div style="height:50px; line-height:50px; background:#F3F3F3;">
+           <div style="float:left; width:800px;">
+    @using (Html.BeginForm("GetWeiXinList","FocusUser"))
+    {
+       <span>AccessToken:</span><input type="text" name="accesstoken" id="accesstoken" /><span>&nbsp;&nbsp;获取数量:</span><input type="text" name="nextopenid" id="nextopenid" /><input type="submit" value="获取" />
+    }
+               </div>
+           关键字：<input type="text" id="txtKey" name="txtKey" value="" /><input type="button" name="btnsoso" id="btnsoso"  value="搜索" />
+        </div>
+        <div style="padding-bottom:10px;"></div>
+        <div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="msgtable">
+              <tr>
+                <th width="7%">选择</th>
+                <th width="17%">用户昵称</th>
+                <th width="11%">头像</th>
+                <th width="16%">性别</th>
+                <th width="25%">省份</th>
+                <th width="11%">城市</th>
+                <th width="13%">操作</th>
+              </tr>
+
+            @foreach (var item in Model)
+            {
+              <tr align="center">
+                <td align="center">
+                   <input type="checkbox" class="checkall" id="cb_id" name="cb_id" value="@item.Id" />            
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.nickname)</td>
+                <td><img src="@item.headimgurl" height="30px" width="30px" /></td>
+                <td>@{if (item.sex == 0)
+                      {@Html.Raw("未知");
+                      }
+                      else if (item.sex == 1)
+                      {@Html.Raw("男");
+                      }
+                      else
+                      {@Html.Raw("女");
+                      }
+                }</td>
+                <td align="center">
+                  @Html.DisplayFor(modelItem => item.province)
+                </td>
+                <td align="center">
+                  @Html.DisplayFor(modelItem => item.city)
+                </td>
+                <td align="center"><span>@Html.ActionLink("详情", "FocusUserManger", new { id = item.Id })</span></td>
+              </tr>
+            }
+
+            </table>
+
+            
+            <div class="spClear"></div>
+            <div style="line-height:30px;height:30px;">
+              <div id="Pagination" class="right flickr">
+              <link href="~/Content/PagedList.css" rel="stylesheet" />
+               @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p = p,key=ViewData["key"] }))
+              </div>
+              <div class="left">
+                <span class="btn_all" onclick="checkAll();" id="btncheckall">全选</span>
+                <span class="btn_bg">
+                   
+                  </span>
+              &nbsp;</div>
+	  </div>
+    </div>
+
+</body>
+</html>

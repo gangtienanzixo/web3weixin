@@ -1,0 +1,91 @@
+﻿@model Seebon.Weixin .MP .Service.CommonService.Model.Administrator
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>增加管理员</title>
+     @Scripts.Render("~/bundles/jquery")
+     @Styles.Render("~/Content/Admin/AdminCss")
+</head>
+<body style="padding:10px;">
+@using (Html.BeginForm()){
+    @Html.ValidationSummary(true)
+    <div class="navigation">
+      <span class="back"><a href="/Admin/Manage/AdminList">返回管理列表</a></span><b>您当前的位置：首页 &gt; 系统管理 &gt; 增加管理员</b>
+    </div>
+    <div style="padding-bottom:10px;"></div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="msgtable">
+              <tr>
+                <th colspan="2" align="left">基本信息设置</th>
+              </tr>
+              <tr>
+                <td width="25%" align="right">登录帐号：</td>
+                <td width="75%">
+                @Html.TextBoxFor(m => m.UserName, new {@class="input required" })
+                @Html.ValidationMessageFor(m=>m.UserName)
+                </td>
+              </tr>
+              <tr>
+                <td align="right">登录密码：</td>
+                <td>
+                @Html.PasswordFor(m => m.UserPwd, new {@class="input required" })
+                @Html.ValidationMessageFor(m => m.UserPwd)
+                </td>
+              </tr>
+              <tr>
+                <td align="right">确认密码：</td>
+                <td>
+                @Html.Password("UserPwd2","",new {@class="input required" })
+                 @Html.ValidationMessage("UserPwd2")
+                </td>
+              </tr>
+              <tr>
+                <td align="right">是否禁用：</td>
+                <td>
+                @Html.RadioButtonFor(m=>m.IsLock,"0",true)正常
+                @Html.RadioButtonFor(m=>m.IsLock,"1")锁定 
+                </td>
+              </tr>
+              <tr>
+                <td align="right">真实姓名：</td>
+                <td>
+                @Html.TextBoxFor(m => m.ReadName, new {@class="input required" })
+                @Html.ValidationMessageFor(m => m.ReadName)
+                </td>
+              </tr>
+              <tr>
+                <td align="right">邮箱地址：</td>
+                <td>
+                @Html.TextBoxFor(m => m.UserEmail, new { @class = "input email" })
+                 @Html.ValidationMessageFor(m => m.UserEmail)
+                </td>
+              </tr>
+              
+              <tr>
+                <td align="right">管理类型：</td>
+                <td>
+                @Html.RadioButtonFor(m => m.UserType, "1", new { @class = "UserType1" })超级管理员
+                @Html.RadioButtonFor(m => m.UserType, "2", new { @class = "UserType2" })系统管理员
+                @Html.RadioButtonFor(m => m.UserType, "3", new { @class = "UserType3" })内容管理员        
+                </td>
+              </tr>
+            </table>
+            
+          
+          <div style="margin-top:10px; text-align:center;">
+            <input type="submit" value="确认保存" class="submit" />
+&nbsp;&nbsp; 
+            <input type="reset" name="button" id="button" value="重 置" class="submit" />
+          </div>   
+}
+
+    @section Scripts{
+      @Scripts.Render("~/bundles/jqueryval")
+    }
+</body>
+</html>

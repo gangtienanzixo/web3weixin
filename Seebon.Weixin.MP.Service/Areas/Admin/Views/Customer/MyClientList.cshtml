@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Seebon.Weixin.MP.Service.CommonService.Model.getMyOnlineClientList_Result>
+
+@{
+    ViewBag.Title = "MyClientList";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+<title>管理员管理</title>
+     @Scripts.Render("~/bundles/AdminJs")
+     @Styles.Render("~/Content/Admin/AdminCss")
+      @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+
+    $(function () {
+        var cb_id = document.getElementsByName("cb_id").value;
+
+        $(".msgtable tr:nth-child(odd)").addClass("tr_bg"); //隔行变色
+        $(".msgtable tr").hover(
+			function () {
+			    $(this).addClass("tr_hover_col");
+			},
+			function () {
+			    $(this).removeClass("tr_hover_col");
+			}
+		);
+    });
+
+    function DelAll()
+    {
+        var str = document.getElementsByName("cb_id");
+        var objarray = str.length;
+        var chestr = "";
+        for (i = 0; i < objarray; i++) {
+            if (str[i].checked == true) {
+                chestr += str[i].value + ",";
+            }
+        }
+        if (chestr!="")
+            if (confirm('删除后不可恢复,确认要批量删除选中记录吗？')) {
+                $.ajax(
+                  {
+                      type: 'POST',
+                      url: 'DeleteAll',
+                      dataType: 'text',
+                      data: { cb_id: chestr },
+                      cache: false,
+                      success: function (e) {
+                          if (e == "ok") {
+                              alert("删除成功！");
+                              location.href = "AdminList";
+                          } else {
+                              alert(e);
+                          }
+                      }
+                  });
+            }
+            else { return; }
+        else {
+
+            alert("请选择要删除的记录!");
+            return;
+        }
+    }
+</script>
+</head>
+<body style="padding:10px;">
+    @using (Html.BeginForm())
+{
+        <div class="navigation"><b>您当前的位置：首页 &gt; 客户管理 &gt; 在线客户列表</b></div>
+        <div style="padding-bottom:10px;"></div>
+        <div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="msgtable">
+              <tr>
+                <th width="7%">选择</th>
+                <th width="17%">微信Id</th>
+                <th width="16%">客户咨询时间</th>
+                <th width="25%">客户微信昵称</th>
+                <th width="11%">咨询客服</th>
+                <th width="11%">状态</th>
+                <th width="13%">操作</th>
+              </tr>
+
+            @foreach (var item in Model)
+            {
+              <tr align="center">
+                <td align="center">
+                   <input type="checkbox" class="checkall" id="cb_id" name="cb_id" value="@item.OpenId" />            
+                   @* @Html.CheckBox("cb_id", false, new { value = item.Id, @class = "checkall" })*@
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.OpenId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OnlineTime)
+                </td>
+                <td>
+                    @(item.nickname==null?@Html.Raw(""):@Html.DisplayFor(modelItem => item.nickname))
+                </td>
+                <td>
+                    @(item.ConnectUserName==null?@Html.Raw(""):@Html.DisplayFor(modelItem => item.ConnectUserName))
+                </td>
+                  <td align="center">
+                      @(item.Status ==1 ?@Html.Raw("等待接入"):@Html.Raw("连线中"))
+                  </td>
+                <td align="center"><span>@Html.ActionLink("接入", "AdminManger", new { id=item.OpenId})</span></td>
+              </tr>
+            }
+
+            </table>
+
+            
+            <div class="spClear"></div>
+            <div style="line-height:30px;height:30px;">
+              <div id="Pagination" class="right flickr">
+              <link href="~/Content/PagedList.css" rel="stylesheet" />
+               @*@Html.PagedListPager((IPagedList)Model, p => Url.Action("AdminList", new { p = p }))*@
+              </div>
+              <div class="left">
+                <span class="btn_all" onclick="checkAll();" id="btncheckall">全选</span>
+                <span class="btn_bg">
+                   <a href="#" onclick="return DelAll();" id="button_del">批量删除</a>
+                  </span>
+              &nbsp;</div>
+	  </div>
+    </div>
+}
+</body>
+</html>
+

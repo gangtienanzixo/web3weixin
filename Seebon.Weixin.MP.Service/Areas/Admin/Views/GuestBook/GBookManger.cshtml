@@ -1,0 +1,52 @@
+﻿@model Seebon.Weixin .MP .Service.CommonService.Model.GuestBook
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>关注者详情</title>
+     @Scripts.Render("~/bundles/jquery")
+     @Styles.Render("~/Content/Admin/AdminCss")
+</head>
+<body style="padding:10px;">
+@using (Html.BeginForm()){
+    @Html.ValidationSummary(true)
+    <div class="navigation">
+      <span class="back"><a href="../Index">返回留言列表</a></span><b>您当前的位置：首页 &gt; 系统管理 &gt; 留言详情</b>
+    </div>
+    <div style="padding-bottom:10px;"></div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="msgtable">
+              <tr>
+                <th colspan="2" align="left">留言详情</th>
+              </tr>
+              <tr>
+                <td width="25%" align="right">联系方式类型：</td>
+                <td width="75%">
+                  @Html.DisplayFor(m=>m.TelType)
+                </td>
+              </tr>
+              <tr>
+                <td align="right">联系方式：</td>
+                <td>
+                  @Html.DisplayFor(m=>m.Tel)
+                </td>
+              </tr>
+              <tr>
+                <td align="right">留言内容：</td>
+                <td>
+                  @Html.DisplayFor(m=>m.Content)
+                </td>
+              </tr>
+            </table>
+            
+}
+
+    @section Scripts{
+      @Scripts.Render("~/bundles/jqueryval")
+    }
+</body>
+</html>

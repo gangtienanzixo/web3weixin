@@ -1,0 +1,10 @@
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.MvcExtension.dll
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.MvcExtension.pdb
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.MvcExtension\obj\Debug\Seebon.Weixin.MP.MvcExtension.csprojResolveAssemblyReference.cache
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.MvcExtension\obj\Debug\Seebon.Weixin.MP.MvcExtension.dll
+G:\仕邦网站\微信\weixin\weixin\Seebon.Weixin.MP.MvcExtension\obj\Debug\Seebon.Weixin.MP.MvcExtension.pdb
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.MvcExtension.dll
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP.Service\bin\Seebon.Weixin.MP.MvcExtension.pdb
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP.MvcExtension\obj\Debug\Seebon.Weixin.MP.MvcExtension.csprojResolveAssemblyReference.cache
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP.MvcExtension\obj\Debug\Seebon.Weixin.MP.MvcExtension.dll
+E:\MyProject\weixinSeebon\weixin\Seebon.Weixin.MP.MvcExtension\obj\Debug\Seebon.Weixin.MP.MvcExtension.pdb
